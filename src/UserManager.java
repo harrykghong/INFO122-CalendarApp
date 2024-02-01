@@ -9,7 +9,7 @@ public class UserManager {
     private UserManager(){
         userPool = new HashMap<>();
     }
-    public static boolean addRegularUser(String userName){
+    public boolean addRegularUser(String userName){
         if(!checkIfUserExists(userName)){
             User newRegularUser = new RegularUser(userName);
             userPool.put(userName, newRegularUser);
@@ -17,23 +17,27 @@ public class UserManager {
         }
         return false;
     }
-    public static boolean switchUser(String userName){
+    public boolean switchUser(String userName){
         return checkIfUserExists(userName);
     }
-    public static boolean removeUser(String userName){
+    public boolean removeUser(String userName){
         if(!checkIfUserExists(userName)){
             return false;
         }
         userPool.remove(userName);
         return true;
     }
-    public static User getUser(String userName){
+    public User getUser(String userName){
         return userPool.get(userName);
     }
-    public static Map<String, User> getUserPool(){
-        return userPool;
+    public String getUserPool(){
+        StringBuilder allUsers = new StringBuilder();
+        userPool.forEach((key, value) -> {
+            allUsers.append(value.getUserName()).append(" | ");
+        });
+        return allUsers.toString();
     }
-    public static boolean checkIfUserExists(String userName){
+    public boolean checkIfUserExists(String userName){
         return userPool.containsKey(userName);
     }
 
@@ -44,3 +48,5 @@ public class UserManager {
         return userManager;
     }
 }
+
+

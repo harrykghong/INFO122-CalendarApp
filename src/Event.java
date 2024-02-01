@@ -11,13 +11,25 @@ public class Event implements Comparable<Event> {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
+    public String getEventTitle(){
+        return title;
+    }
     public LocalDateTime getStartTime(){
         return startTime;
     }
 
     public LocalDateTime getEndTime(){
         return endTime;
+    }
+
+    public void updateEventTitle(String value){
+        title = value;
+    }
+    public void updateEventStartTime(String value){
+        startTime = LocalDateTime.parse(value);
+    }
+    public void updateEventEndTime(String value){
+        endTime = LocalDateTime.parse(value);
     }
 
     @Override

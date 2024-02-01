@@ -10,7 +10,9 @@ public abstract class MyCalendar {
         this.calendarName = calendarName;
         this.eventPool = new HashMap<>();
     }
-
+    public String getCalendarName(){
+        return calendarName;
+    }
     public boolean addEvent(String eventName, LocalDateTime startTime, LocalDateTime endTime){
         if(!checkIfEventExists(eventName)){
             eventPool.put(eventName, new Event(eventName, startTime, endTime));
@@ -29,15 +31,30 @@ public abstract class MyCalendar {
     public void removeAllEvent(){
         eventPool = new HashMap<>();
     }
+    public void updateCalendarName(String newC){
+        calendarName = newC;
+    }
+    public Event getEvent(String eventName){
+        return eventPool.get(eventName);
+    }
 
     public String getAllEvents(){
         StringBuilder allEvents = new StringBuilder();
         eventPool.forEach((key, value) -> {
-            allEvents.append(key).append(" | ").append(value.getStartTime().toString()).append(" to ").append( value.getEndTime().toString()).append("\n");
+            allEvents.append(value.getEventTitle()).append(" | ").append(value.getStartTime().toString()).append(" to ").append( value.getEndTime().toString()).append("\n");
         });
         return allEvents.toString();
     }
 
+    public void updateEventTitle(String oldT, String newT){
+        Event temp = eventPool.get(oldT);
+        temp.updateEventTitle(newT);
+        eventPool.remove(oldT);
+        eventPool.put(newT, temp);
+    }
+    public boolean isCalendarEmpty(){
+        return eventPool.isEmpty();
+    }
     public boolean checkIfEventExists(String eventName){
         return eventPool.containsKey(eventName);
     }
