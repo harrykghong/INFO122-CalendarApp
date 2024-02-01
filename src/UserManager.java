@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+
 // singleton pattern
 public class UserManager {
     private static Map<String, User> userPool;
@@ -8,27 +9,16 @@ public class UserManager {
     private UserManager(){
         userPool = new HashMap<>();
     }
-    public static boolean addUser(String userName){
+    public static boolean addRegularUser(String userName){
         if(!checkIfUserExists(userName)){
-            User newUser = new User(userName);
-            userPool.put(userName, newUser);
+            User newRegularUser = new RegularUser(userName);
+            userPool.put(userName, newRegularUser);
             return true;
         }
         return false;
     }
     public static boolean switchUser(String userName){
-        if(checkIfUserExists(userName)){
-
-            return true;
-        }
-        return false;
-    }
-    public static User getUser(String userName){
-        return userPool.get(userName);
-    }
-
-    public static Map<String, User> getUserPool(){
-        return userPool;
+        return checkIfUserExists(userName);
     }
     public static boolean removeUser(String userName){
         if(!checkIfUserExists(userName)){
@@ -37,8 +27,12 @@ public class UserManager {
         userPool.remove(userName);
         return true;
     }
-
-
+    public static User getUser(String userName){
+        return userPool.get(userName);
+    }
+    public static Map<String, User> getUserPool(){
+        return userPool;
+    }
     public static boolean checkIfUserExists(String userName){
         return userPool.containsKey(userName);
     }
