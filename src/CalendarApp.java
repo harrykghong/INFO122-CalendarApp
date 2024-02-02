@@ -1,8 +1,5 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CalendarApp {
@@ -80,7 +77,7 @@ public class CalendarApp {
                     String removeUserName = removeUser.nextLine();
                     if(userManager.removeUser(removeUserName)){
                         if(currentUser.equals(removeUserName)){
-                            resetStates("user"); // remove currently operating user
+                            resetStatus("user"); // remove currently operating user
                         }
                         System.out.println("Successfully remove user [" + removeUserName + "]!");
                     }else{
@@ -130,7 +127,7 @@ public class CalendarApp {
                         String removeCalendarName = removeCalendar.nextLine();
                         if (currentU.removeCalendar(removeCalendarName)) {
                             if(currentCalendar.equals(removeCalendarName)){
-                                resetStates("calendar"); // remove currently using calendar
+                                resetStatus("calendar"); // remove currently using calendar
                             }
                             System.out.println("Successfully remove calendar [" + removeCalendarName + "]!");
                         } else {
@@ -280,7 +277,7 @@ public class CalendarApp {
         }
     }
 
-    private static void resetStates(String command){
+    private static void resetStatus(String command){
         switch(command){
             case "user":
                 if(currentE != null){
