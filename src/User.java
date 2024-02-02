@@ -31,10 +31,6 @@ public abstract class User {
         calendarPool.put(newC, temp);
     }
 
-    public boolean switchCalendar(String calendarName){
-        return checkIfCalendarExists(calendarName);
-    }
-
     public boolean removeCalendar(String calendarName){
         if(!checkIfCalendarExists(calendarName)){
             return false;

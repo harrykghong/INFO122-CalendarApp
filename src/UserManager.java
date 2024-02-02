@@ -17,9 +17,6 @@ public class UserManager {
         }
         return false;
     }
-    public boolean switchUser(String userName){
-        return checkIfUserExists(userName);
-    }
     public boolean removeUser(String userName){
         if(!checkIfUserExists(userName)){
             return false;

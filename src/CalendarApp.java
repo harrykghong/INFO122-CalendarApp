@@ -63,7 +63,7 @@ public class CalendarApp {
                     Scanner switchUser = new Scanner(System.in);
                     System.out.print("Please input user name you want to switch to: ");
                     String switchUserName = switchUser.nextLine();
-                    if(userManager.switchUser(switchUserName)){
+                    if(userManager.checkIfUserExists(switchUserName)){
                         currentU = userManager.getUser(switchUserName);
                         currentUser = switchUserName;
                         System.out.println("Successfully switch to user [" + switchUserName + "]!");
@@ -109,7 +109,7 @@ public class CalendarApp {
                         Scanner switchCalendar = new Scanner(System.in);
                         System.out.print("Please input calendar name you want to switch to: ");
                         String switchCalendarName = switchCalendar.nextLine();
-                        if (currentU.switchCalendar(switchCalendarName)) {
+                        if (currentU.checkIfCalendarExists(switchCalendarName)) {
                             currentC = currentU.getCalendar(switchCalendarName);
                             currentCalendar = switchCalendarName;
                             System.out.println("Successfully switch to calendar [" + switchCalendarName + "]!");
